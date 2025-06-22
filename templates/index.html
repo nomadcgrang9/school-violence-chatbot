@@ -35,10 +35,8 @@ body{min-height:100vh;padding:20px;display:flex;justify-content:center;align-ite
 .bot .message-bubble{background:#fff;border:1px solid var(--border);border-bottom-left-radius:6px}
 .user{flex-direction:row-reverse}
 .user .message-bubble{background:var(--bubble-user);color:#1F411F;border:none;border-bottom-right-radius:6px}
-.message-bubble::after{content:"";position:absolute;bottom:-6px;width:12px;height:12px;
-  background:inherit;transform:rotate(45deg);}
-.bot .message-bubble::after{left:12px;border-left:1px solid var(--border);border-bottom:1px solid var(--border)}
-.user .message-bubble::after{right:12px}
+.bot .message-bubble,
+.user .message-bubble{border-bottom-left-radius:20px;border-bottom-right-radius:20px}
 /* 시간 스탬프 (아직 미구현용 기본 스타일) */
 .time{display:block;font-size:12px;font-weight:300;color:#666;margin-top:6px}
 /* avatar */
