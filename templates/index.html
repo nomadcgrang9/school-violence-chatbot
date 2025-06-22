@@ -7,64 +7,157 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#FFE8CC;--card:#FFF9F0;--header-light:#FFF0D4;--header-dark:#FFC87A;
-  --accent:#87B071;--accent-d:#76A061;--border:#FFD4A3;--bubble-user:#A9CB91;
+:root {
+  --bg:#FFE8CC; --card:#FFF9F0; --header-light:#FFF0D4; --header-dark:#FFC87A;
+  --accent:#87B071; --accent-d:#76A061; --border:#FFD4A3; --bubble-user:#A9CB91;
 }
-*{margin:0;padding:0;box-sizing:border-box;font-family:"Noto Sans KR",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
-body{min-height:100vh;padding:20px;display:flex;justify-content:center;align-items:center;
-     background:var(--bg) url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23ffffff' fill-opacity='0.06' width='3' height='3'/%3E%3C/svg%3E") repeat;}
-#chat-container{width:100%;max-width:450px;height:700px;background:var(--card);
-  display:flex;flex-direction:column;border-radius:24px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.12)}
-@media(max-width:480px){body{padding:0}#chat-container{height:100vh;border-radius:0}}
+* {
+  margin: 0; padding: 0; box-sizing: border-box;
+  font-family: "Noto Sans KR", sans-serif;
+}
+body {
+  min-height: 100vh; padding: 20px;
+  display: flex; justify-content: center; align-items: center;
+  background: var(--bg) url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23ffffff' fill-opacity='0.06' width='3' height='3'/%3E%3C/svg%3E") repeat;
+}
+#chat-container {
+  width: 100%; max-width: 450px; height: 700px; background: var(--card);
+  display: flex; flex-direction: column; border-radius: 24px;
+  overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,.12);
+}
+@media(max-width:480px) {
+  body { padding: 0; }
+  #chat-container { height: 100vh; border-radius: 0; }
+}
 /* ----- HEADER ----- */
-#header{padding:24px 20px 20px;text-align:center;border-bottom:1px solid var(--border);
-        background:linear-gradient(180deg,var(--header-light) 0%,var(--header-dark) 100%);}
-.mascot{display:inline-flex;align-items:center;gap:12px;background:var(--card);
-        padding:10px 22px;border-radius:22px;box-shadow:inset 0 1px 2px rgba(255,255,255,.5),
-        0 3px 12px rgba(0,0,0,.08);}
-.mascot h1{font-size:18px;font-weight:600;color:#835A00}
-.date{font-size:14px;color:#9A774B;margin-top:10px}
+#header {
+  padding: 24px 20px 20px; text-align: center;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg,var(--header-light) 0%,var(--header-dark) 100%);
+}
+.mascot {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: var(--card); padding: 10px 22px; border-radius: 22px;
+  box-shadow: inset 0 1px 2px rgba(255,255,255,.5), 0 3px 12px rgba(0,0,0,.08);
+}
+.mascot h1 {
+  font-size: 18px; font-weight: 600; color: #835A00;
+}
+.date {
+  font-size: 14px; color: #9A774B; margin-top: 10px;
+}
 /* ----- CHAT WINDOW ----- */
-#chat-window{flex:1;overflow-y:auto;padding:20px;background:var(--card);scroll-behavior:smooth}
-#chat-window::-webkit-scrollbar{width:6px}#chat-window::-webkit-scrollbar-thumb{background:var(--header-dark);border-radius:3px}
-.message{display:flex;align-items:flex-end;gap:8px;margin-bottom:18px;animation:fade .25s}
-@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-.message-bubble{max-width:78%;padding:14px 18px;border-radius:20px;line-height:1.55;word-break:keep-all;
-                position:relative;font-weight:400;box-shadow:inset 0 1px 0 rgba(255,255,255,.6)}
-.bot .message-bubble{background:#fff;border:1px solid var(--border);border-bottom-left-radius:6px}
-.user{flex-direction:row-reverse}
-.user .message-bubble{background:var(--bubble-user);color:#1F411F;border:none;border-bottom-right-radius:6px}
-.bot .message-bubble,
-.user .message-bubble{border-bottom-left-radius:20px;border-bottom-right-radius:20px}
-/* 시간 스탬프 (아직 미구현용 기본 스타일) */
-.time{display:block;font-size:12px;font-weight:300;color:#666;margin-top:6px}
+#chat-window {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow-y: auto;
+  padding: 20px;
+  background: var(--card);
+  scroll-behavior: smooth;
+}
+#chat-window::-webkit-scrollbar {
+  width: 6px;
+}
+#chat-window::-webkit-scrollbar-thumb {
+  background: var(--header-dark);
+  border-radius: 3px;
+}
+.message {
+  display: flex; align-items: flex-end; gap: 8px;
+  margin-bottom: 18px;
+  animation: fade .25s;
+}
+@keyframes fade {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.message-bubble {
+  max-width: 78%; padding: 14px 18px; border-radius: 20px;
+  line-height: 1.55; word-break: keep-all; position: relative;
+  font-weight: 400;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.6);
+}
+.bot .message-bubble {
+  background: #fff; border: 1px solid var(--border);
+  border-bottom-left-radius: 6px;
+}
+.user {
+  flex-direction: row-reverse;
+}
+.user .message-bubble {
+  background: var(--bubble-user); color: #1F411F;
+  border: none; border-bottom-right-radius: 6px;
+}
+.bot .message-bubble, .user .message-bubble {
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
 /* avatar */
-.avatar{width:36px;height:36px;border-radius:50%;background:var(--header-dark);
-        display:flex;align-items:center;justify-content:center;font-size:20px}
+.avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--header-dark);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+}
 /* typing indicator */
-.typing-indicator{display:flex;align-items:center;gap:4px;padding:14px 18px}
-.typing-indicator span{width:8px;height:8px;background:#A0826D;border-radius:50%;animation:blink 1.4s infinite}
-.typing-indicator span:nth-child(2){animation-delay:.2s}.typing-indicator span:nth-child(3){animation-delay:.4s}
-@keyframes blink{0%,60%,100%{opacity:.3}30%{opacity:1}}
+.typing-indicator {
+  display: flex; align-items: center; gap: 4px; padding: 14px 18px;
+}
+.typing-indicator span {
+  width: 8px; height: 8px; background: #A0826D;
+  border-radius: 50%; animation: blink 1.4s infinite;
+}
+.typing-indicator span:nth-child(2) { animation-delay: .2s; }
+.typing-indicator span:nth-child(3) { animation-delay: .4s; }
+@keyframes blink {
+  0%, 60%, 100% { opacity: .3; }
+  30% { opacity: 1; }
+}
 /* ----- INPUT ----- */
-#input-area{padding:16px;background:#fff;border-top:1px solid var(--border)}
-#chat-form{display:flex;gap:10px;align-items:center}
-.input-wrapper{flex:1;display:flex;align-items:center;background:var(--card);
-               border:1px solid var(--border);border-radius:24px;padding:8px 14px}
-.input-wrapper:focus-within{border-color:var(--header-dark)}
-#user-input{flex:1;border:none;background:none;font-size:15px;outline:none;color:#333}
-#user-input::placeholder{color:#A0826D}
-#submit-button{width:44px;height:44px;border:none;border-radius:50%;flex-shrink:0;
-  background:var(--accent);display:flex;align-items:center;justify-content:center;cursor:pointer;
-  transition:transform .15s,background .2s}
-#submit-button:hover{background:var(--accent-d)}#submit-button:active{transform:scale(.92)}
-#submit-button:disabled{background:#D3D3D3;cursor:not-allowed}
+#input-area {
+  padding: 16px; background: #fff;
+  border-top: 1px solid var(--border);
+}
+#chat-form {
+  display: flex; gap: 10px; align-items: center;
+}
+.input-wrapper {
+  flex: 1; display: flex; align-items: center;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 24px; padding: 8px 14px;
+}
+.input-wrapper:focus-within {
+  border-color: var(--header-dark);
+}
+#user-input {
+  flex: 1; border: none; background: none;
+  font-size: 15px; outline: none; color: #333;
+}
+#user-input::placeholder {
+  color: #A0826D;
+}
+#submit-button {
+  width: 44px; height: 44px; border: none; border-radius: 50%;
+  flex-shrink: 0; background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: transform .15s, background .2s;
+}
+#submit-button:hover { background: var(--accent-d); }
+#submit-button:active { transform: scale(.92); }
+#submit-button:disabled { background: #D3D3D3; cursor: not-allowed; }
 /* ↓ 최신으로 버튼 */
-#to-bottom{position:absolute;right:26px;bottom:100px;width:40px;height:40px;border-radius:50%;
-  background:var(--header-dark);display:none;align-items:center;justify-content:center;cursor:pointer;
-  box-shadow:0 4px 10px rgba(0,0,0,.15);transition:opacity .25s}
-#to-bottom svg{stroke:white}
+#to-bottom {
+  position: absolute; right: 26px; bottom: 100px;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--header-dark); display: none;
+  align-items: center; justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,.15);
+  transition: opacity .25s;
+}
+#to-bottom svg { stroke: white; }
 </style>
 </head>
 <body>
@@ -83,7 +176,9 @@ body{min-height:100vh;padding:20px;display:flex;justify-content:center;align-ite
 
   <div id="input-area">
     <form id="chat-form" onsubmit="return false;">
-      <div class="input-wrapper"><input id="user-input" type="text" placeholder="메시지를 입력하세요…" autocomplete="off"></div>
+      <div class="input-wrapper">
+        <input id="user-input" type="text" placeholder="메시지를 입력하세요…" autocomplete="off">
+      </div>
       <button id="submit-button" type="button">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M22 2 11 13"/><path d="M22 2 15 22 11 13 2 9 22 2Z"/>
@@ -93,55 +188,60 @@ body{min-height:100vh;padding:20px;display:flex;justify-content:center;align-ite
   </div>
 
   <div id="to-bottom">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 9l6 6 6-6"/>
+    </svg>
   </div>
 </div>
 
 <script>
-const chatWindow=document.getElementById('chat-window');
-const userInput=document.getElementById('user-input');
-const submitBtn=document.getElementById('submit-button');
-const toBottomBtn=document.getElementById('to-bottom');
-
-/* 날짜 */
-document.getElementById('current-date').textContent=
+const chatWindow = document.getElementById('chat-window');
+const userInput = document.getElementById('user-input');
+const submitBtn = document.getElementById('submit-button');
+const toBottomBtn = document.getElementById('to-bottom');
+document.getElementById('current-date').textContent =
   new Date().toLocaleDateString('ko-KR',{month:'long',day:'numeric',weekday:'long'});
 
-/* 전송 이벤트 */
-submitBtn.onclick=sendMessage;
-userInput.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}});
-
-/* 스크롤 버튼 */
+submitBtn.onclick = sendMessage;
+userInput.addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&!e.shiftKey){
+    e.preventDefault(); sendMessage();
+  }
+});
 chatWindow.addEventListener('scroll',()=>{
   const nearBottom = chatWindow.scrollHeight-chatWindow.scrollTop-chatWindow.clientHeight<120;
-  toBottomBtn.style.display=nearBottom?'none':'flex';
+  toBottomBtn.style.display = nearBottom ? 'none' : 'flex';
 });
 toBottomBtn.onclick=()=>chatWindow.scrollTo({top:chatWindow.scrollHeight,behavior:'smooth'});
 
 function sendMessage(){
-  const msg=userInput.value.trim();if(!msg)return;
-  appendMessage('user',msg);userInput.value='';toggleInput(false);
+  const msg=userInput.value.trim(); if(!msg) return;
+  appendMessage('user',msg); userInput.value=''; toggleInput(false);
   const typing=showTyping();
-  fetch('/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:msg})})
-    .then(r=>r.json()).then(d=>appendMessage('bot',d.reply||d.error))
-    .catch(()=>appendMessage('bot','죄송합니다, 오류가 발생했습니다. 😢'))
-    .finally(()=>{hideTyping(typing);toggleInput(true);userInput.focus();});
+  fetch('/chat',{
+    method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({message:msg})
+  })
+  .then(r=>r.json())
+  .then(d=>appendMessage('bot',d.reply||d.error))
+  .catch(()=>appendMessage('bot','죄송합니다, 오류가 발생했습니다. 😢'))
+  .finally(()=>{hideTyping(typing); toggleInput(true); userInput.focus();});
 }
-
 function appendMessage(type,text){
-  const wrap=document.createElement('div');wrap.className='message '+type;
+  const wrap=document.createElement('div'); wrap.className='message '+type;
   const bubble=`<div class="message-bubble">${text.replace(/\n/g,'<br>')}</div>`;
   wrap.innerHTML=type==='bot'?`<div class="avatar">📚</div>${bubble}`:bubble;
-  chatWindow.appendChild(wrap);chatWindow.scrollTop=chatWindow.scrollHeight;
+  chatWindow.appendChild(wrap);
+  chatWindow.scrollTop = chatWindow.scrollHeight;
 }
 function showTyping(){
-  const d=document.createElement('div');
-  d.className='message bot';d.innerHTML=`<div class="avatar">📚</div>
+  const d=document.createElement('div'); d.className='message bot';
+  d.innerHTML=`<div class="avatar">📚</div>
     <div class="message-bubble typing-indicator"><span></span><span></span><span></span></div>`;
-  chatWindow.appendChild(d);chatWindow.scrollTop=chatWindow.scrollHeight;return d;
+  chatWindow.appendChild(d); chatWindow.scrollTop=chatWindow.scrollHeight; return d;
 }
-function hideTyping(el){if(el)el.remove();}
-function toggleInput(on){userInput.disabled=!on;submitBtn.disabled=!on;}
+function hideTyping(el){ if(el) el.remove(); }
+function toggleInput(on){ userInput.disabled=!on; submitBtn.disabled=!on; }
 </script>
 </body>
 </html>
