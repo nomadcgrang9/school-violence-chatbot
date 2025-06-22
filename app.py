@@ -21,7 +21,7 @@ try:
     genai.configure(api_key=api_key)
     
     # 사용할 Gemini 모델을 설정합니다.
-    model = genai.GenerativeModel('models/gemini-1.5-flash-latest')
+    model = genai.GenerativeModel('models/gemini-2.5-flash')
 except Exception as e:
     # API 설정 중 에러가 발생하면 터미널에 메시지를 출력합니다.
     print(f"API 설정 중 에러 발생: {e}")
