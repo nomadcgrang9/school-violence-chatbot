@@ -23,7 +23,7 @@ try:
     )
 
     # 사용할 Gemini 모델
-    model = genai.GenerativeModel("models/gemini-2.5-flash")
+    model = genai.GenerativeModel("models/gemini-1.5-flash")
 
 except Exception as e:
     print(f"API 설정 중 에러 발생: {e}")
