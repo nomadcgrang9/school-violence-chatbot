@@ -13,20 +13,16 @@ app = Flask(__name__)
 try:
     api_key = os.getenv("GEMINI_API_KEY")
     if not api_key:
-        raise ValueError("GEMINI_API_KEY 환경 변수를 찾을 수 없습니다. .env 파일을 확인하세요.")
+        raise RuntimeError("GEMINI_API_KEY 가 없습니다.")
 
-    # v1 엔드포인트 + 버전 지정
-    genai.configure(
-        api_key=api_key,
-        api_endpoint="https://generativelanguage.googleapis.com",
-        api_version="v1",
-    )
+    # ① configure : endpoint·version 빼고 transport="rest" 만
+    genai.configure(api_key=api_key, transport="rest")
 
-    # 사용할 Gemini 모델
+    # ② 모델 이름   : 1.5-flash (지금 사용 가능한 최고 사양)
     model = genai.GenerativeModel("models/gemini-1.5-flash")
 
 except Exception as e:
-    print(f"API 설정 중 에러 발생: {e}")
+    traceback.print_exc()
     model = None
 
 # 매뉴얼 파일명
