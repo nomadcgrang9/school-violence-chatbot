@@ -19,7 +19,7 @@ try:
     genai.configure(api_key=api_key, transport="rest")
 
     # ② 모델 이름   : 1.5-flash (지금 사용 가능한 최고 사양)
-    model = genai.GenerativeModel("models/gemini-1.5-flash")
+    model = genai.GenerativeModel("models/gemini-1.5-pro")
 
 except Exception as e:
     traceback.print_exc()
